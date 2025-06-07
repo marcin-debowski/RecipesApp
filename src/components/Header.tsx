@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Header () {
     return (
-        <header>
+        <header className="sticky-header">
             <Link to="/">
                 <button>Page 1</button>
             </Link>
