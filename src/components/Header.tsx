@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaUserCircle, FaSearch } from "react-icons/fa";
 
 function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -40,9 +41,13 @@ function Header() {
 
       {/* Navigation */}
       <nav className="hidden sm:flex items-center space-x-1 sm:space-x-2">
-        <Link 
-          to="/page1" 
-          className="font-semibold px-2 sm:px-3 py-2 rounded-full hover:bg-gray-100 flex items-center text-xs sm:text-base"
+        <Link
+          to="/page1"
+          className={`font-semibold px-2 sm:px-3 py-2 rounded-full flex items-center text-xs sm:text-base ${
+            location.pathname === "/page1"
+              ? "bg-black text-white"
+              : "hover:bg-gray-100"
+          }`}
         >
           Home <span className="ml-1 text-red-500 text-xs">•</span>
         </Link>
@@ -52,19 +57,38 @@ function Header() {
         >
           Today
         </Link> */}
-        <Link 
-          to="/create-recipe" 
-          className="font-semibold px-2 sm:px-3 py-2 rounded-full hover:bg-gray-100 text-xs sm:text-base">
+        <Link
+          to="/create-recipe"
+          className={`font-semibold px-2 sm:px-3 py-2 rounded-full text-xs sm:text-base ${
+            location.pathname === "/create-recipe"
+              ? "bg-black text-white"
+              : "hover:bg-gray-100"
+          }`}
+        >
           Create
         </Link>
       </nav>
 
       {/* Mobile nav */}
       <nav className="flex sm:hidden items-center space-x-2">
-        <Link to="/" className="font-semibold px-2 py-1 rounded hover:bg-gray-100 text-xs">
+        <Link
+          to="/"
+          className={`font-semibold px-2 py-1 rounded text-xs ${
+            location.pathname === "/"
+              ? "bg-black text-white"
+              : "hover:bg-gray-100"
+          }`}
+        >
           Home
         </Link>
-        <Link to="/recipes" className="bg-black text-white px-2 py-1 rounded font-semibold text-xs">
+        <Link
+          to="/recipes"
+          className={`font-semibold px-2 py-1 rounded text-xs ${
+            location.pathname === "/recipes"
+              ? "bg-black text-white"
+              : "hover:bg-gray-100"
+          }`}
+        >
           Today
         </Link>
       </nav>
@@ -82,7 +106,10 @@ function Header() {
       </div>
 
       {/* Icons */}
-      <div className="flex items-center space-x-2 sm:space-x-4 mr-1 sm:mr-2 relative w-7" ref={dropdownRef}>
+      <div
+        className="flex items-center space-x-2 sm:space-x-4 mr-1 sm:mr-2 relative w-7"
+        ref={dropdownRef}
+      >
         <button
           onClick={() => setDropdownOpen((v) => !v)}
           className="focus:outline-none"
