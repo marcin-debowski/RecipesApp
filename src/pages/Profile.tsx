@@ -81,7 +81,7 @@ export default function Profile() {
         >
           Created
         </button>
-        <button
+        {/* <button
           className={`pb-2 font-semibold border-b-2 transition ${
             tab === "saved"
               ? "border-black text-black"
@@ -90,7 +90,7 @@ export default function Profile() {
           onClick={() => setTab("saved")}
         >
           Saved
-        </button>
+        </button> */}
       </div>
       {/* Masonry grid */}
       <div className="w-full max-w-6xl px-2">

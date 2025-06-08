@@ -76,7 +76,7 @@ export default function Something() {
                   )}
                 </button>
               </label>
-              <Link to="/recipes">
+              <Link to="/page1">
                 <button
                   type="submit"
                   className="w-full bg-rose-300 hover:bg-rose-400 transition-colors text-gray-700 py-2 rounded-md font-semibold mb-3 mt-2 cursor-pointer"
@@ -183,7 +183,7 @@ export default function Something() {
               </label>
               <button
                 type="submit"
-                className="w-full bg-rose-200 text-gray-700 py-2 rounded-md font-semibold mb-3 mt-2 cursor-pointer"
+                className="w-full bg-rose-200 hover:bg-rose-400 transition text-gray-700 py-2 rounded-md font-semibold mb-3 mt-2 cursor-pointer"
                 onClick={() => setShowRegister(false)}
               >
                 Register

@@ -26,16 +26,6 @@ function Header() {
     };
   }, [dropdownOpen]);
 
-  const [activeId, setActiveId] = useState('today'); // domyślnie Today aktywny
-
-  const getClassNames = (id: string) => {
-    const baseClass =
-      'font-semibold px-2 sm:px-3 py-2 rounded-full text-xs sm:text-base';
-    const activeClass = 'bg-black text-white';
-    const hoverClass = 'hover:bg-gray-100';
-    return `${baseClass} ${id === activeId ? activeClass : hoverClass}`;
-  };
-
   return (
     <header className="bg-white py-2 px-2 sm:px-4 shadow flex items-center w-full fixed top-0 z-100">
       {/* Logo */}
@@ -56,12 +46,12 @@ function Header() {
         >
           Home <span className="ml-1 text-red-500 text-xs">•</span>
         </Link>
-        <Link 
+        {/* <Link 
           to="/recipes" 
           className="bg-black text-white px-3 sm:px-4 py-2 rounded-full font-semibold focus:outline-none text-xs sm:text-base"
         >
           Today
-        </Link>
+        </Link> */}
         <Link 
           to="/create-recipe" 
           className="font-semibold px-2 sm:px-3 py-2 rounded-full hover:bg-gray-100 text-xs sm:text-base">
