@@ -61,32 +61,10 @@ function Home() {
 
   return (
     <div
-      className={`w-full min-h-screen flex flex-col items-center justify-center
-        bg-gradient-to-br from-amber-100 via-amber-200 to-amber-300
-        relative overflow-hidden`}
-      style={{
-        backgroundImage: `
-          linear-gradient(135deg, #fbbf24 0%, #fde68a 100%),
-          url('https://www.transparenttextures.com/patterns/food.png')
-        `,
-        backgroundBlendMode: "multiply",
-      }}
+      className="w-full min-h-screen flex flex-col items-center justify-center
+        bg-white
+         "
     >
-      {/* Decorative SVG shapes */}
-      <svg
-        className="absolute top-0 left-0 w-64 h-64 opacity-20 pointer-events-none"
-        viewBox="0 0 400 400"
-        fill="none"
-      >
-        <circle cx="200" cy="200" r="200" fill="#f59e42" />
-      </svg>
-      <svg
-        className="absolute bottom-0 right-0 w-80 h-80 opacity-10 pointer-events-none"
-        viewBox="0 0 400 400"
-        fill="none"
-      >
-        <rect x="0" y="0" width="400" height="400" rx="200" fill="#fbbf24" />
-      </svg>
 
       {/* Blur overlay when popup is open */}
       {selected && (
@@ -95,18 +73,22 @@ function Home() {
         </div>
       )}
 
-      <div className={`w-full max-w-screen-2xl px-4 py-25 relative z-40 transition-all ${selected ? "pointer-events-none blur-sm" : ""}`}>
-        <h2 className="text-4xl font-bold mb-4 text-center text-amber-900 drop-shadow">
-          Recipes Page
-        </h2>
-        <p className="text-3xl mb-12 text-center text-amber-800">
-          Welcome to the Recipes page!
+      <div className={`w-full max-w-screen-2xl px-4 pt-25 pb-16 relative z-40 transition-all ${selected ? "pointer-events-none blur-sm" : ""}`}>
+        <p className="text-2xl text-center text-black">
+          {new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         </p>
+        <h2 className="text-4xl font-bold mb-16 text-center text-black">
+          Find your recipe
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {images.map((img, idx) => (
             <button
               key={idx}
-              className="bg-white/90 rounded-lg shadow-md overflow-hidden flex flex-col h-full backdrop-blur cursor-pointer transition hover:scale-105 focus:outline-none"
+              className="bg-white/90 rounded-2xl shadow-md overflow-hidden flex flex-col h-full backdrop-blur cursor-pointer transition hover:scale-105 focus:outline-none"
               onClick={() => setSelected(img)}
               tabIndex={0}
               aria-label={`Show details for ${img.title}`}
@@ -156,6 +138,26 @@ function Home() {
           </div>
         </div>
       )}
+
+      {/* End of page message */}
+      <div className="flex flex-col items-center justify-center mb-15">
+        <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center mb-3">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="12" fill="black" />
+            <path d="M8 12.5l3 3 5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <div className="text-gray-800 font-medium text-center mb-1">That's all for today!</div>
+        <div className="text-lg font-semibold text-center mb-4">
+          Come back tomorrow for more daily recipes<br />inspiration
+        </div>
+        <button
+          className="bg-gray-100 text-black rounded-full px-5 py-2 font-medium hover:bg-gray-200 transition hover:cursor-pointer"
+          onClick={() => window.location.href = "/"}
+        >
+          Go to home feed
+        </button>
+      </div>
     </div>
   );
 }
