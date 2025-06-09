@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 export default function CreateRecipe() {
   const fileInput = useRef<HTMLInputElement>(null);
@@ -100,6 +101,7 @@ export default function CreateRecipe() {
         {/* Left: Upload */}
         <div className="flex-1 flex flex-col items-center">
           <h2 className="text-2xl font-semibold mb-6">Create your recipe</h2>
+          <h2 className="text-2xl font-semibold mb-6">Create your recipe</h2>
           <div
             className="w-72 h-80 bg-gray-100 rounded-2xl flex flex-col items-center justify-center border border-gray-200 mb-6"
             onClick={() => fileInput.current?.click()}
@@ -128,8 +130,13 @@ export default function CreateRecipe() {
                 Choose a file or drag and drop
                 <br />
                 it here.
+                Choose a file or drag and drop
+                <br />
+                it here.
               </p>
               <p className="mt-4 text-xs text-gray-500 text-center max-w-[220px]">
+                Recommendation: Use high quality jpg files of less than 20 MB or
+                .mp4 files of less than 200 MB.
                 Recommendation: Use high quality jpg files of less than 20 MB or
                 .mp4 files of less than 200 MB.
               </p>
@@ -139,6 +146,7 @@ export default function CreateRecipe() {
               type="file"
               className="hidden"
               accept="image/*,video/mp4"
+              onChange={handleFileChange}
               onChange={handleFileChange}
             />
           </div>
@@ -154,10 +162,16 @@ export default function CreateRecipe() {
         <form className="flex-1 flex flex-col gap-3" onSubmit={handleSubmit}>
           <label className="font-medium text-sm mt-1">
             Title
+        <form className="flex-1 flex flex-col gap-3" onSubmit={handleSubmit}>
+          <label className="font-medium text-sm mt-1">
+            Title
             <input
               type="text"
               placeholder="Add title"
               className="w-full border border-gray-300 rounded-full px-4 py-2 mt-1 outline-none focus:border-red-400 transition text-sm"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
@@ -213,11 +227,23 @@ export default function CreateRecipe() {
               Success: {successMessage}
             </div>
           )}
+          {errorMessage && (
+            <div className="text-red-500 text-center text-sm mt-2">
+              Error: {errorMessage}
+            </div>
+          )}
+          {successMessage && (
+            <div className="text-green-500 text-center text-sm mt-2">
+              Success: {successMessage}
+            </div>
+          )}
           <button
             type="submit"
             className="w-full bg-red-600 text-white rounded-full py-2 font-semibold mt-4 transition hover:bg-red-700"
             disabled={loading}
+            disabled={loading}
           >
+            {loading ? "Publishing..." : "Publish"}
             {loading ? "Publishing..." : "Publish"}
           </button>
         </form>

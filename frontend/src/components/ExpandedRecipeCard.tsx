@@ -22,11 +22,36 @@ interface Comment {
   };
   createdAt: string;
 }
+import React, { useState, useEffect } from "react";
+
+interface Recipe {
+  recipeId: number;
+  title: string;
+  description: string;
+  ingredients: string;
+  steps: string;
+  imageUrl: string;
+  author: {
+    userId: number;
+    username: string;
+  };
+}
+
+interface Comment {
+  commentId: number;
+  content: string;
+  author: {
+    userId: number;
+    username: string;
+  };
+  createdAt: string;
+}
 
 interface ExpandedRecipeCardProps {
   recipe: Recipe;
   onClose: () => void;
   randomRecipes: (Recipe & { _idx: number })[];
+  onRandomRecipeClick: (id: number) => void;
   onRandomRecipeClick: (id: number) => void;
 }
 

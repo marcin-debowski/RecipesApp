@@ -15,6 +15,23 @@ interface Recipe {
     username: string;
   };
 }
+import { useState, useEffect } from "react";
+import "./Page1.css";
+import RecipeCard from "../components/RecipeCard";
+import ExpandedRecipeCard from "../components/ExpandedRecipeCard";
+
+interface Recipe {
+  recipeId: number;
+  title: string;
+  description: string;
+  ingredients: string;
+  steps: string;
+  imageUrl: string;
+  author: {
+    userId: number;
+    username: string;
+  };
+}
 
 function getRandomOtherRecipes(
     recipes: Recipe[],
