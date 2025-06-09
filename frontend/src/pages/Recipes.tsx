@@ -12,20 +12,6 @@ interface Recipe {
     username: string;
   };
 }
-import { useState, useEffect } from "react";
-
-interface Recipe {
-  recipeId: number;
-  title: string;
-  description: string;
-  ingredients: string;
-  steps: string;
-  imageUrl: string;
-  author: {
-    userId: number;
-    username: string;
-  };
-}
 
 function Home() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -83,7 +69,6 @@ function Home() {
 
   // Handler for closing popup when clicking outside
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) setSelectedRecipeId(null);
     if (e.target === e.currentTarget) setSelectedRecipeId(null);
   };
 
