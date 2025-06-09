@@ -1,8 +1,10 @@
 package org.przepisy.backend.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipeRequest {
     @NotBlank(message = "Title is required")
     @Size(max = 255, message = "Title cannot exceed 255 characters")
@@ -15,6 +17,8 @@ public class RecipeRequest {
 
     @NotBlank(message = "Steps are required")
     private String steps;
+
+    private String imageUrl;
 
     // Constructors
     public RecipeRequest() {}
@@ -38,4 +42,12 @@ public class RecipeRequest {
 
     public String getSteps() { return steps; }
     public void setSteps(String steps) { this.steps = steps; }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
