@@ -31,8 +31,12 @@ function Home() {
         }
         const data = await response.json();
         setRecipes(data.data.content); // Access the 'content' array inside the 'data' object
-      } catch (e: any) {
-        setError(e.message);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError(String(e));
+        }
       } finally {
         setLoading(false);
       }
@@ -55,8 +59,12 @@ function Home() {
           }
           const data = await response.json();
           setDetailedRecipe(data.data);
-        } catch (e: any) {
-          setPopupError(e.message);
+        } catch (e: unknown) {
+          if (e instanceof Error) {
+            setPopupError(e.message);
+          } else {
+            setPopupError(String(e));
+          }
         } finally {
           setPopupLoading(false);
         }

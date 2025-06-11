@@ -46,8 +46,12 @@ const Page1 = () => {
         }
         const data = await response.json();
         setRecipes(data.data.content);
-      } catch (e: any) {
-        setError(e.message);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError(String(e));
+        }
       } finally {
         setLoading(false);
       }

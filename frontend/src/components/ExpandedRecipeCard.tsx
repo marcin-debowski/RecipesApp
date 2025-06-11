@@ -31,11 +31,11 @@ interface ExpandedRecipeCardProps {
 }
 
 const ExpandedRecipeCard: React.FC<ExpandedRecipeCardProps> = ({
-                                                                 recipe,
-                                                                 onClose,
-                                                                 randomRecipes,
-                                                                 onRandomRecipeClick,
-                                                               }) => {
+    recipe,
+    onClose,
+    randomRecipes,
+    onRandomRecipeClick,
+  }) => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [newCommentText, setNewCommentText] = useState<string>("");
   const [commentsLoading, setCommentsLoading] = useState<boolean>(true);
@@ -62,8 +62,12 @@ const ExpandedRecipeCard: React.FC<ExpandedRecipeCardProps> = ({
       }
       const data = await response.json();
       setComments(data.data.content || []);
-    } catch (e: any) {
-      setCommentsError(e.message);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setCommentsError(e.message);
+      } else {
+        setCommentsError("An unknown error occurred.");
+      }
     } finally {
       setCommentsLoading(false);
     }
@@ -100,8 +104,12 @@ const ExpandedRecipeCard: React.FC<ExpandedRecipeCardProps> = ({
       }
       setNewCommentText("");
       fetchComments(); // Refresh comments after submission
-    } catch (e: any) {
-      setCommentSubmitError(e.message);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setCommentSubmitError(e.message);
+      } else {
+        setCommentSubmitError("An unknown error occurred.");
+      }
     } finally {
       setCommentSubmitting(false);
     }
@@ -128,7 +136,7 @@ const ExpandedRecipeCard: React.FC<ExpandedRecipeCardProps> = ({
                       className="close-btn hover:cursor-pointer font-semibold px-4 py-2 rounded-3xl bg-black text-white"
                       onClick={onClose}
                   >
-                    Zamknij
+                    Close
                   </button>
                 </div>
               </div>
